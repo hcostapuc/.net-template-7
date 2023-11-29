@@ -12,20 +12,9 @@ public class LoggingBehaviour<TRequest> : IRequestPreProcessor<TRequest> where T
         _logger = logger;
     }
 
-    public async Task Process(TRequest request, CancellationToken cancellationToken)
+    public Task Process(TRequest request, CancellationToken cancellationToken)
     {
-        var requestName = typeof(TRequest).Name;
-        var userId = string.Empty;
-        string userName = string.Empty;
-
-        if (!string.IsNullOrEmpty(userId))
-        {
-            //TODO: ver como adicionar o nome do usuario aqui
-            //userName = await _identityService.GetUserNameAsync(userId);
-            userName = string.Empty;
-        }
-
-        _logger.LogInformation("CleanArchitecture Request: {Name} {@UserId} {@UserName} {@Request}",
-            requestName, userId, userName, request);
+        _logger.LogInformation("CleanArchitecture Request: {@Request}", request);
+        return Task.CompletedTask;
     }
 }

@@ -15,14 +15,11 @@ public class ApplicationDbContext : DbContext
         {
             switch (entry.State)
             {
-                //TODO: adicionar usuario no createBy
                 case EntityState.Added:
-                    entry.Entity.CreatedBy = string.Empty;
                     entry.Entity.Created = DateTime.Now;
                     break;
 
                 case EntityState.Modified:
-                    entry.Entity.LastModifiedBy = string.Empty;
                     entry.Entity.LastModified = DateTime.Now;
                     break;
             }

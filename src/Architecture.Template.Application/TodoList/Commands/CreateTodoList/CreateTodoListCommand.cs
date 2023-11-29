@@ -1,3 +1,3 @@
 ﻿namespace Application.TodoList.Commands.CreateTodoList;
 
-public record class CreateTodoListCommand(string? Title) : IRequest<Guid>;
+public sealed record CreateTodoListCommand(string? Title) : IRequest<Guid>;

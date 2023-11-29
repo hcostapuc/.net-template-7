@@ -1,3 +1,3 @@
 ﻿namespace Application.TodoItem.Commands.DeleteTodoItem;
 
-public record DeleteTodoItemCommand(Guid Id) : IRequest;
+public sealed record DeleteTodoItemCommand(Guid Id) : IRequest;

@@ -7,24 +7,14 @@ using WebApi.Common;
 
 namespace WebApi.Controllers;
 
-//TODO: voltar quando fazer teste de autorização
-//[Authorize]
 public class TodoItemController : ApiControllerBase
 {
-    //[HttpGet]//TODO: criar o pagination com o IQueryble component
-    //public async Task<ActionResult<PaginatedList<TodoItemBriefDto>>> GetTodoItemsWithPagination([FromQuery] GetTodoItemsWithPaginationQuery query)
-    //{
-    //    return await Mediator.Send(query);
-    //}
-
     [HttpPost]
-    public async Task<ActionResult<Guid>> Create(CreateTodoItemCommand command)
-    {
-        return await Mediator.Send(command);
-    }
+    public async Task<ActionResult<Guid>> CreateAsync(CreateTodoItemCommand command) =>
+         await Mediator.Send(command);
 
     [HttpPut("{id}")]
-    public async Task<ActionResult> Update(Guid id, UpdateTodoItemCommand command)
+    public async Task<ActionResult> UpdateAsync(Guid id, UpdateTodoItemCommand command)
     {
         if (id != command.Id)
         {
@@ -37,7 +27,7 @@ public class TodoItemController : ApiControllerBase
     }
 
     [HttpPut("[action]")]
-    public async Task<ActionResult> UpdateItemDetails(Guid id, UpdateTodoItemDetailCommand command)
+    public async Task<ActionResult> UpdateItemDetailsAsync(Guid id, UpdateTodoItemDetailCommand command)
     {
         if (id != command.Id)
         {
@@ -50,7 +40,7 @@ public class TodoItemController : ApiControllerBase
     }
 
     [HttpDelete("{id}")]
-    public async Task<ActionResult> Delete(Guid id)
+    public async Task<ActionResult> DeleteAsync(Guid id)
     {
         await Mediator.Send(new DeleteTodoItemCommand(id));
 

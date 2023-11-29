@@ -12,13 +12,13 @@ public record class TodoItemDto : IMapFrom<TodoItemEntity>
 
     public bool Done { get; set; }
 
-    public int Priority { get; set; }
+    public PriorityLevelDto Priority { get; set; }
 
     public string? Note { get; set; }
 
     public void Mapping(Profile profile)
     {
         profile.CreateMap<TodoItemEntity, TodoItemDto>()
-            .ForMember(d => d.Priority, opt => opt.MapFrom(s => (int)s.Priority));
+            .ForMember(d => d.Priority, opt => opt.MapFrom(s => s.Priority));
     }
 }

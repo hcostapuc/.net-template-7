@@ -29,13 +29,9 @@ public class PerformanceBehaviour<TRequest, TResponse> : IPipelineBehavior<TRequ
         if (elapsedMilliseconds > 500)
         {
             var requestName = typeof(TRequest).Name;
-            //TODO: quando adicionar a autorização
-            var userName = string.Empty;
 
             _logger.LogWarning("CleanArchitecture Long Running Request: {Name} ({ElapsedMilliseconds} milliseconds) {@Request}",
-                requestName, elapsedMilliseconds,
-
-                userName, request);
+                requestName, elapsedMilliseconds, request);
         }
 
         return response;

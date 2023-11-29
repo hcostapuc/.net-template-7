@@ -32,8 +32,6 @@ public static class DependencyInjection
         services.AddScoped<ITodoItemRepository, TodoItemRepository>();
         services.AddScoped<ITodoListRepository, TodoListRepository>();
 
-        //TODO: recuperar o user do identity com a biblioteca do AD
-
         return services;
     }
 }

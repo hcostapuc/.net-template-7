@@ -16,11 +16,6 @@ public class GetTodosQueryHandler : IRequestHandler<GetTodoQuery, TodosVm>
     public async Task<TodosVm> Handle(GetTodoQuery request, CancellationToken cancellationToken) =>
          new TodosVm
          {
-             PriorityLevels = Enum.GetValues(typeof(PriorityLevel))
-                .Cast<PriorityLevel>()
-                .Select(p => new PriorityLevelDto((int)p, p.ToString()))
-                .ToList(),
-
              Lists = _mapper.Map<IList<TodoListDto>>(await _todoListRepository.SelectAllAsync(cancellationToken: cancellationToken))
          };
 }
