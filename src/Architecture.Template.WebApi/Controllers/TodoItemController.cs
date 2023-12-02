@@ -11,7 +11,7 @@ public class TodoItemController : ApiControllerBase
 {
     [HttpPost]
     public async Task<ActionResult<Guid>> CreateAsync(CreateTodoItemCommand command) =>
-         await Mediator.Send(command);
+         await Sender.Send(command);
 
     [HttpPut("{id}")]
     public async Task<ActionResult> UpdateAsync(Guid id, UpdateTodoItemCommand command)
@@ -21,7 +21,7 @@ public class TodoItemController : ApiControllerBase
             return BadRequest();
         }
 
-        await Mediator.Send(command);
+        await Sender.Send(command);
 
         return NoContent();
     }
@@ -34,7 +34,7 @@ public class TodoItemController : ApiControllerBase
             return BadRequest();
         }
 
-        await Mediator.Send(command);
+        await Sender.Send(command);
 
         return NoContent();
     }
@@ -42,7 +42,7 @@ public class TodoItemController : ApiControllerBase
     [HttpDelete("{id}")]
     public async Task<ActionResult> DeleteAsync(Guid id)
     {
-        await Mediator.Send(new DeleteTodoItemCommand(id));
+        await Sender.Send(new DeleteTodoItemCommand(id));
 
         return NoContent();
     }

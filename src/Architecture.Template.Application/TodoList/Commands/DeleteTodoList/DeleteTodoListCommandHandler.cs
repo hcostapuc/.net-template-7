@@ -4,9 +4,9 @@ namespace Application.TodoList.Commands.DeleteTodoList;
 
 public class DeleteTodoListCommandHandler : IRequestHandler<DeleteTodoListCommand>
 {
-    private readonly ITodoListRepository _todoListRepository;
+    private readonly IVehicleRepository _todoListRepository;
 
-    public DeleteTodoListCommandHandler(ITodoListRepository todoListRepository) =>
+    public DeleteTodoListCommandHandler(IVehicleRepository todoListRepository) =>
         _todoListRepository = todoListRepository ?? throw new ArgumentNullException(nameof(todoListRepository));
 
     public async Task Handle(DeleteTodoListCommand request, CancellationToken cancellationToken)

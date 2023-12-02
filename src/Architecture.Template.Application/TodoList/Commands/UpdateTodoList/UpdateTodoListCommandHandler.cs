@@ -4,9 +4,9 @@ namespace Application.TodoList.Commands.UpdateTodoList;
 
 public class UpdateTodoListCommandHandler : IRequestHandler<UpdateTodoListCommand>
 {
-    private readonly ITodoListRepository _todoListRepository;
+    private readonly IVehicleRepository _todoListRepository;
 
-    public UpdateTodoListCommandHandler(ITodoListRepository todoListRepository) =>
+    public UpdateTodoListCommandHandler(IVehicleRepository todoListRepository) =>
         _todoListRepository = todoListRepository ?? throw new ArgumentNullException(nameof(todoListRepository));
 
     public async Task Handle(UpdateTodoListCommand request, CancellationToken cancellationToken)

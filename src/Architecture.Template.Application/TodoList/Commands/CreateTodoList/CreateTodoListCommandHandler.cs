@@ -3,9 +3,9 @@
 namespace Application.TodoList.Commands.CreateTodoList;
 public class CreateTodoListCommandHandler : IRequestHandler<CreateTodoListCommand, Guid>
 {
-    private readonly ITodoListRepository _todoListRepository;
+    private readonly IVehicleRepository _todoListRepository;
 
-    public CreateTodoListCommandHandler(ITodoListRepository todoListRepository) =>
+    public CreateTodoListCommandHandler(IVehicleRepository todoListRepository) =>
         _todoListRepository = todoListRepository ?? throw new ArgumentNullException(nameof(todoListRepository));
 
     public async Task<Guid> Handle(CreateTodoListCommand request, CancellationToken cancellationToken)

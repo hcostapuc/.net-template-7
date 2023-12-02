@@ -38,7 +38,7 @@ public class CreateTodoItemCommandHandlerTest
 
         var entityToCreate = fixture.Create<TodoItemEntity>();
 
-        var todoItemRepository = new Mock<ITodoItemRepository>();
+        var todoItemRepository = new Mock<IClientRepository>();
 
         var cancelationToken = new CancellationToken();
 
@@ -75,7 +75,7 @@ public class CreateTodoItemCommandHandlerTest
 
         var entityToCreate = fixture.Create<TodoItemEntity>();
 
-        var todoItemRepository = new Mock<ITodoItemRepository>();
+        var todoItemRepository = new Mock<IClientRepository>();
 
         var cancelationToken = new CancellationToken();
 

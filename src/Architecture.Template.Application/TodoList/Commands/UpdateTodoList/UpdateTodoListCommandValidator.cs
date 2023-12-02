@@ -4,9 +4,9 @@ namespace Application.TodoList.Commands.UpdateTodoList;
 
 public class UpdateTodoListCommandValidator : AbstractValidator<UpdateTodoListCommand>
 {
-    private readonly ITodoListRepository _todoListRepository;
+    private readonly IVehicleRepository _todoListRepository;
 
-    public UpdateTodoListCommandValidator(ITodoListRepository todoListRepository)
+    public UpdateTodoListCommandValidator(IVehicleRepository todoListRepository)
     {
         _todoListRepository = todoListRepository ?? throw new ArgumentNullException(nameof(todoListRepository));
 

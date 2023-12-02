@@ -1,6 +1,6 @@
 ﻿namespace Domain.ValueObjects;
 
-public class Colour : ValueObject
+public sealed class Colour : ValueObject
 {
     static Colour()
     {

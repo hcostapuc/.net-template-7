@@ -4,9 +4,9 @@ namespace Application.TodoList.Commands.PurgeTodoList;
 
 public class PurgeTodoListCommandHandler : IRequestHandler<PurgeTodoListCommand>
 {
-    private readonly ITodoListRepository _todoListRepository;
+    private readonly IVehicleRepository _todoListRepository;
 
-    public PurgeTodoListCommandHandler(ITodoListRepository todoListRepository) =>
+    public PurgeTodoListCommandHandler(IVehicleRepository todoListRepository) =>
         _todoListRepository = todoListRepository ?? throw new ArgumentNullException(nameof(todoListRepository));
 
     public async Task Handle(PurgeTodoListCommand request, CancellationToken cancellationToken) =>

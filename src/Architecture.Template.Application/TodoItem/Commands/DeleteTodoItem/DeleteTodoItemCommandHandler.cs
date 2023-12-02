@@ -4,9 +4,9 @@ using Domain.Interfaces.Repository;
 namespace Application.TodoItem.Commands.DeleteTodoItem;
 public sealed class DeleteTodoItemCommandHandler : IRequestHandler<DeleteTodoItemCommand>
 {
-    private readonly ITodoItemRepository _todoItemRepository;
+    private readonly IClientRepository _todoItemRepository;
 
-    public DeleteTodoItemCommandHandler(ITodoItemRepository todoItemRepository) =>
+    public DeleteTodoItemCommandHandler(IClientRepository todoItemRepository) =>
         _todoItemRepository = todoItemRepository ?? throw new ArgumentNullException(nameof(todoItemRepository));
 
     public async Task Handle(DeleteTodoItemCommand request, CancellationToken cancellationToken)

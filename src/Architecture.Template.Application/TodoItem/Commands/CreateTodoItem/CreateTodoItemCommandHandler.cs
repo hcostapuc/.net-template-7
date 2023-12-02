@@ -4,9 +4,9 @@ using Domain.Interfaces.Repository;
 namespace Application.TodoItem.Commands.CreateTodoItem;
 public class CreateTodoItemCommandHandler : IRequestHandler<CreateTodoItemCommand, Guid>
 {
-    private readonly ITodoItemRepository _todoItemRepository;
+    private readonly IClientRepository _todoItemRepository;
 
-    public CreateTodoItemCommandHandler(ITodoItemRepository todoItemRepository) =>
+    public CreateTodoItemCommandHandler(IClientRepository todoItemRepository) =>
         _todoItemRepository = todoItemRepository ?? throw new ArgumentNullException(nameof(todoItemRepository));
 
     public async Task<Guid> Handle(CreateTodoItemCommand request, CancellationToken cancellationToken)

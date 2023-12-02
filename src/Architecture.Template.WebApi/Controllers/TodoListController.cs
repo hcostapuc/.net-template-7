@@ -11,11 +11,11 @@ public class TodoListController : ApiControllerBase
 {
     [HttpGet]
     public async Task<ActionResult<TodosVm>> GetAsync() =>
-        await Mediator.Send(new GetTodoQuery());
+        await Sender.Send(new GetTodoQuery());
 
     [HttpPost]
     public async Task<ActionResult<Guid>> CreateAsync(CreateTodoListCommand command) =>
-        await Mediator.Send(command);
+        await Sender.Send(command);
 
     [HttpPut("{id}")]
     public async Task<ActionResult> UpdateAsync(Guid id, UpdateTodoListCommand command)
@@ -25,7 +25,7 @@ public class TodoListController : ApiControllerBase
             return BadRequest();
         }
 
-        await Mediator.Send(command);
+        await Sender.Send(command);
 
         return NoContent();
     }
@@ -33,7 +33,7 @@ public class TodoListController : ApiControllerBase
     [HttpDelete("{id}")]
     public async Task<ActionResult> DeleteAsync(Guid id)
     {
-        await Mediator.Send(new DeleteTodoListCommand(id));
+        await Sender.Send(new DeleteTodoListCommand(id));
 
         return NoContent();
     }

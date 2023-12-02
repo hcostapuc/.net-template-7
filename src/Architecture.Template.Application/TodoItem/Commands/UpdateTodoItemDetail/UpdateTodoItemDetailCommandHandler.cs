@@ -3,9 +3,9 @@
 namespace Application.TodoItem.Commands.UpdateTodoItemDetail;
 public class UpdateTodoItemDetailCommandHandler : IRequestHandler<UpdateTodoItemDetailCommand>
 {
-    private readonly ITodoItemRepository _todoItemRepository;
+    private readonly IClientRepository _todoItemRepository;
 
-    public UpdateTodoItemDetailCommandHandler(ITodoItemRepository todoItemRepository) =>
+    public UpdateTodoItemDetailCommandHandler(IClientRepository todoItemRepository) =>
         _todoItemRepository = todoItemRepository ?? throw new ArgumentNullException(nameof(todoItemRepository));
 
     public async Task Handle(UpdateTodoItemDetailCommand request, CancellationToken cancellationToken)

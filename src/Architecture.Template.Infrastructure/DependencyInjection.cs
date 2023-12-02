@@ -29,8 +29,8 @@ public static class DependencyInjection
                     b => b.MigrationsAssembly(typeof(ApplicationDbContext).Assembly.FullName)));
         }
 
-        services.AddScoped<ITodoItemRepository, TodoItemRepository>();
-        services.AddScoped<ITodoListRepository, TodoListRepository>();
+        services.AddScoped<IClientRepository, TodoItemRepository>();
+        services.AddScoped<IVehicleRepository, TodoListRepository>();
 
         return services;
     }
