@@ -1,14 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Net.Mail;
 
 namespace Domain.Entities;
-public sealed class ClientEntity: BaseAuditableEntity
+public sealed class ClientEntity : BaseAuditableEntity
 {
     public required string Name { get; set; }
-    public required Email Email { get; set; }
+    //TODO: voltar com o mailAddress
+    //public required MailAddress Email { get; set; }
+    public required string Email { get; set; }
     public required string Address { get; set; }
     public IList<VehicleEntity> VehicleCollection { get; private set; } = new List<VehicleEntity>();
+    public IList<WashOrderEntity> WashOrderCollection { get; private set; } = new List<WashOrderEntity>();
 }

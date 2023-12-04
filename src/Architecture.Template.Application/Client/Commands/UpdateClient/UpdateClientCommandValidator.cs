@@ -1,7 +1,7 @@
 ﻿using Application.Client.Commands.UpdateClient;
 
 namespace Application.Client.Commands.DeleteClient;
-internal class UpdateClientCommandValidator : AbstractValidator<UpdateClientCommand>
+public sealed class UpdateClientCommandValidator : AbstractValidator<UpdateClientCommand>
 {
     public UpdateClientCommandValidator()
     {

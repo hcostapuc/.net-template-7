@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Domain.Interfaces.Repository;
+﻿using Domain.Interfaces.Repository;
 
 namespace Application.Client.Queries.GetClient;
 public sealed class GetClientQueryHandler : IRequestHandler<GetClientQuery, GetClientRootDto>
@@ -21,6 +16,6 @@ public sealed class GetClientQueryHandler : IRequestHandler<GetClientQuery, GetC
     {
         var clientEntity = await _clientRepository.SelectAsync(x => x.Id == request.Id, cancellationToken);
         Guard.Against.NotFound(request.Id, clientEntity, nameof(clientEntity.Id));
-        return _mapper.Map<ClientEntity,GetClientRootDto>(clientEntity);
+        return _mapper.Map<ClientEntity, GetClientRootDto>(clientEntity);
     }
 }

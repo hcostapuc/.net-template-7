@@ -21,5 +21,6 @@ public sealed class ClientRepository: BaseRepository<ClientEntity>, IClientRepos
     public async Task<ClientEntity> SelectDetailAsync(Expression<Func<ClientEntity, bool>> expression, CancellationToken cancellationToken = default) =>
         await _dataset.AsNoTracking()
                  .Include(x => x.VehicleCollection)
+                 .Include(x => x.WashOrderCollection)
                  .SingleOrDefaultAsync(expression, cancellationToken);
 }

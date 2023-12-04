@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
+using System.Reflection.Emit;
 using System.Text;
 using System.Threading.Tasks;
 using Domain.Entities;
@@ -12,7 +14,10 @@ public class VehicleConfiguration : IEntityTypeConfiguration<VehicleEntity>
 {
     public void Configure(EntityTypeBuilder<VehicleEntity> builder)
     {
-        builder.Ignore(e => e.DomainEvents);
-        builder.Property(x => x.)
+        //TODO: ver como ta ignorando o dmainevents da versao 7.0
+        builder.Ignore(x => x.DomainEvents);
+        //builder.OwnsOne(x => x.Colour);//TODO voltar quando voltar com o value object
+        builder.HasIndex(x => new { x.ClientId, x.Plate })
+               .IsUnique();
     }
 }

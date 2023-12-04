@@ -12,6 +12,12 @@ public class ClientConfiguration : IEntityTypeConfiguration<ClientEntity>
 {
     public void Configure(EntityTypeBuilder<ClientEntity> builder)
     {
-        builder.HasIndex(x => x.Email);
+        builder.Ignore(x => x.DomainEvents);
+        builder.HasIndex(x => x.Email)
+               .IsUnique();
+        //builder.OwnsOne(x => x.Email);
+        //builder.HasIndex(x => x.Email);//TODO add email index
+        builder.Property(x => x.Name)
+               .IsRequired();
     }
 }

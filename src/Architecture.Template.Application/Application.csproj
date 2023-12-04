@@ -19,19 +19,4 @@
       <ProjectReference Include="..\Architecture.Template.Domain\Domain.csproj" />
     </ItemGroup>
 
-    <ItemGroup>
-      <Folder Include="Vehicle\Commands\CreateVehicle\" />
-      <Folder Include="Vehicle\Commands\DeleteVehicle\" />
-      <Folder Include="Vehicle\Commands\UpdateVehicleDetail\" />
-      <Folder Include="Vehicle\Commands\UpdateVehicle\" />
-      <Folder Include="Vehicle\Queries\GetVehicleDetail\" />
-      <Folder Include="Vehicle\Queries\GetVehicle\" />
-      <Folder Include="WashOrder\Commands\CreateWashOrder\" />
-      <Folder Include="WashOrder\Commands\DeleteWashOrder\" />
-      <Folder Include="WashOrder\Commands\UpdateWashOrderDetail\" />
-      <Folder Include="WashOrder\Commands\UpdateWashOrder\" />
-      <Folder Include="WashOrder\Queries\GetWashOrderDetail\" />
-      <Folder Include="WashOrder\Queries\GetWashOrder\" />
-    </ItemGroup>
-
 </Project>

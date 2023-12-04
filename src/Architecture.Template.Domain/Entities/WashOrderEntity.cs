@@ -1,18 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Domain.Events;
+﻿using Domain.Events;
 
 namespace Domain.Entities;
 public sealed class WashOrderEntity: BaseAuditableEntity
 {
+    public required Guid ClientId { get; set; }
     public required ClientEntity Client { get; set; }
-    public required PriorityLevel PriorityLevel { get; set; }
+    public required Guid VehicleId { get; set; }
+    public required VehicleEntity Vehicle { get; set; }
+    //public required WashType WashType { get; set; } = WashType.Ordinary;//TODO voltar para enum
+    public required string WashType { get; set; }
+    public float Price { get; set; }
+    public required StatusOrder Status { get; set; } = StatusOrder.Open;
     public string? Description { get; set; }
-    //If needed to add more robustness fell free to create a service class
-    public IList<string> ServiceCollection { get; private set; } = new List<string>();
 
     private readonly bool _done;
     public bool Done
@@ -24,4 +23,15 @@ public sealed class WashOrderEntity: BaseAuditableEntity
                 AddDomainEvent(new WashOrderCompletedEvent(this));
         }
     }
+}
+public enum StatusOrder
+{
+    Open,
+    InProcess,
+    Closed
+}
+public enum WashType
+{
+    Ordinary,
+    Detailed
 }

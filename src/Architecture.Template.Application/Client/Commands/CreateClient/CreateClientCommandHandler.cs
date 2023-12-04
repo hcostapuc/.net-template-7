@@ -11,14 +11,11 @@ public sealed class CreateClientCommandHandler : IRequestHandler<CreateClientCom
 {
     private readonly IClientRepository _clientRepository;
     private readonly IMapper _mapper;
-    private readonly ILogger _logger;
     public CreateClientCommandHandler(IClientRepository clientRepository,
-                                      IMapper mapper,
-                                      ILogger logger)
+                                      IMapper mapper)
     {
         _clientRepository = clientRepository ?? throw new ArgumentNullException(nameof(clientRepository));
         _mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
-        _logger = logger ?? throw new ArgumentNullException(nameof(logger));
     }
     public async Task<Guid> Handle(CreateClientCommand request, CancellationToken cancellationToken)
     {

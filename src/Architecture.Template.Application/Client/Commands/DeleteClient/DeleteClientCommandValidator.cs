@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using Application.Client.Commands.CreateClient;
 
 namespace Application.Client.Commands.DeleteClient;
-internal class DeleteClientCommandValidator : AbstractValidator<DeleteClientCommand>
+public sealed class DeleteClientCommandValidator : AbstractValidator<DeleteClientCommand>
 {
     public DeleteClientCommandValidator()
     {

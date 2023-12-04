@@ -4,8 +4,6 @@ using Application.Client.Commands.UpdateClient;
 using Application.Client.Queries.GetClient;
 using Application.Client.Queries.GetClientCollection;
 using Application.Client.Queries.GetClientDetail;
-using Application.TodoList.Commands.UpdateTodoList;
-using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using WebApi.Common;
 
@@ -28,9 +26,9 @@ public class ClientController : ApiControllerBase
     [HttpPut("{id}")]
     public async Task<ActionResult> UpdateAsync(Guid id, UpdateClientCommand command)
     {
-        if (id != command.Id)
+        if (id != command?.Id)
         {
-            return BadRequest();
+            return BadRequest($"Incompatible id between body {command?.Id} and path {id}");
         }
 
         await Sender.Send(command);
