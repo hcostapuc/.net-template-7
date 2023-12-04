@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Domain.Interfaces.Repository;
-using Microsoft.Extensions.Logging;
+﻿using Domain.Interfaces.Repository;
 
 namespace Application.WashOrder.Commands.CreateWashOrder;
 public sealed class CreateWashOrderCommandHandler : IRequestHandler<CreateWashOrderCommand, Guid>
@@ -30,7 +24,7 @@ public sealed class CreateWashOrderCommandHandler : IRequestHandler<CreateWashOr
 
         Guard.Against.NotFound(request.VehicleId, clientEntity, nameof(clientEntity.VehicleCollection));
 
-        var washOrderEntity = _mapper.Map<CreateWashOrderCommand,WashOrderEntity>(request);
+        var washOrderEntity = _mapper.Map<CreateWashOrderCommand, WashOrderEntity>(request);
 
         await _washOrderRepository.InsertAsync(washOrderEntity, cancellationToken);
 

@@ -1,4 +1,4 @@
-﻿namespace Application.WashOrder.Commands.DeleteWashOrder;
+﻿namespace Application.WashOrder.Commands.ConcludeWashOrder;
 public sealed class ConcludeWashOrderCommandValidator : AbstractValidator<ConcludeWashOrderCommand>
 {
     public ConcludeWashOrderCommandValidator()

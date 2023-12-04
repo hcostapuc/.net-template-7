@@ -1,7 +1,4 @@
-﻿using System;
-using Domain.Interfaces.Repository;
-
-namespace Application.WashOrder.Commands.CreateWashOrder;
+﻿namespace Application.WashOrder.Commands.CreateWashOrder;
 public sealed class CreateWashOrderCommandValidator : AbstractValidator<CreateWashOrderCommand>
 {
     public CreateWashOrderCommandValidator()

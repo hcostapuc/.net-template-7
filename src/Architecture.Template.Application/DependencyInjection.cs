@@ -1,5 +1,5 @@
 ﻿using System.Reflection;
-using Application.Common.Behaviours;
+using Application._Common.Behaviours;
 using MediatR.Pipeline;
 using Microsoft.Extensions.DependencyInjection;
 

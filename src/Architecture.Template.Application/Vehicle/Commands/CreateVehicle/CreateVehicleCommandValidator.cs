@@ -1,18 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
-using Domain.Interfaces.Repository;
+﻿using Domain.Interfaces.Repository;
 
 namespace Application.Vehicle.Commands.CreateVehicle;
 public sealed class CreateVehicleCommandValidator : AbstractValidator<CreateVehicleCommand>
 {
     private readonly IClientRepository _clientRepository;
     private readonly IVehicleRepository _vehicleRepository;
-    public CreateVehicleCommandValidator(IClientRepository clientRepository, 
+    public CreateVehicleCommandValidator(IClientRepository clientRepository,
                                          IVehicleRepository vehicleRepository)
     {
         _clientRepository = clientRepository ?? Guard.Against.Null(clientRepository, nameof(clientRepository));

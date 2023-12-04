@@ -1,6 +1,6 @@
 ﻿using Domain.Interfaces.Repository;
 
-namespace Application.WashOrder.Commands.DeleteWashOrder;
+namespace Application.WashOrder.Commands.ConcludeWashOrder;
 public sealed class ConcludeWashOrderCommandHandler : IRequestHandler<ConcludeWashOrderCommand>
 {
     private readonly IWashOrderRepository _washOrderRepository;

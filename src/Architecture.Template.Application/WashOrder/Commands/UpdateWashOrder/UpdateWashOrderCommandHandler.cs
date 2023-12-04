@@ -13,7 +13,7 @@ public sealed class UpdateWashOrderCommandHandler : IRequestHandler<UpdateWashOr
         Guard.Against.NotFound(request.Id, washOrderEntity, nameof(washOrderEntity));
 
         washOrderEntity.UpdateEntityFieldsFrom(request);
-        
+
         await _washOrderRepository.UpdateAsync(washOrderEntity, cancellationToken);
     }
 }

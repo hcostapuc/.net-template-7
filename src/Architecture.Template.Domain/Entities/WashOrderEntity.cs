@@ -1,7 +1,7 @@
 ﻿using Domain.Events;
 
 namespace Domain.Entities;
-public sealed class WashOrderEntity: BaseAuditableEntity
+public sealed class WashOrderEntity : BaseAuditableEntity
 {
     public required Guid ClientId { get; set; }
     public required ClientEntity Client { get; set; }

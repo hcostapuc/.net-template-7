@@ -1,6 +1,4 @@
-﻿using System.Net.Mail;
-
-namespace Domain.Entities;
+﻿namespace Domain.Entities;
 public sealed class ClientEntity : BaseAuditableEntity
 {
     public required string Name { get; set; }

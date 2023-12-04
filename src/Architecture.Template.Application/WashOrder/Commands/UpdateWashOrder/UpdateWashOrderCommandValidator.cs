@@ -1,6 +1,4 @@
-﻿using Application.WashOrder.Commands.UpdateWashOrder;
-
-namespace Application.WashOrder.Commands.DeleteWashOrder;
+﻿namespace Application.WashOrder.Commands.UpdateWashOrder;
 public sealed class UpdateWashOrderCommandValidator : AbstractValidator<UpdateWashOrderCommand>
 {
     public UpdateWashOrderCommandValidator()

@@ -1,12 +1,4 @@
-﻿using System;
-using System.Threading;
-using System.Threading.Tasks;
-using Application.Client.Commands.CreateClient;
-using AutoFixture;
-using Domain.Interfaces.Repository;
-using FluentAssertions;
-using Moq;
-using Xunit;
+﻿using Xunit;
 
 namespace Application.UnitTests.TodoItem;
 

@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Domain.Interfaces.Repository;
+﻿using Domain.Interfaces.Repository;
 
 namespace Application.Vehicle.Commands.UpdateVehicle;
 public sealed class UpdateVehicleCommandHandler : IRequestHandler<UpdateVehicleCommand>
@@ -18,7 +13,7 @@ public sealed class UpdateVehicleCommandHandler : IRequestHandler<UpdateVehicleC
         Guard.Against.NotFound(request.Id, vehicleEntity, nameof(vehicleEntity));
 
         vehicleEntity.UpdateEntityFieldsFrom(request);
-        
+
         await _vehicleRepository.UpdateAsync(vehicleEntity, cancellationToken);
     }
 }

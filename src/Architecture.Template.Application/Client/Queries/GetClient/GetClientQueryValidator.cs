@@ -1,6 +1,4 @@
-﻿using Application.Client.Queries.GetClient;
-
-namespace Application.Client.Commands.DeleteClient;
+﻿namespace Application.Client.Queries.GetClient;
 public sealed class GetClientQueryValidator : AbstractValidator<GetClientQuery>
 {
     public GetClientQueryValidator()

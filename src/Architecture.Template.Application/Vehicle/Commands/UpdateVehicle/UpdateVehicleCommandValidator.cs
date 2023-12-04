@@ -1,7 +1,4 @@
-﻿using Application.Vehicle.Commands.UpdateVehicle;
-using Domain.Interfaces.Repository;
-
-namespace Application.Vehicle.Commands.DeleteVehicle;
+﻿namespace Application.Vehicle.Commands.UpdateVehicle;
 public sealed class UpdateVehicleCommandValidator : AbstractValidator<UpdateVehicleCommand>
 {
     public UpdateVehicleCommandValidator()

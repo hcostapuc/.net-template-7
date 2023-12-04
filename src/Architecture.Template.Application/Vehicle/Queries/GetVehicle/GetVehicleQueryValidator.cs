@@ -1,6 +1,4 @@
-﻿using Application.Vehicle.Queries.GetVehicle;
-
-namespace Application.Vehicle.Commands.DeleteVehicle;
+﻿namespace Application.Vehicle.Queries.GetVehicle;
 public sealed class GetVehicleQueryValidator : AbstractValidator<GetVehicleQuery>
 {
     public GetVehicleQueryValidator()

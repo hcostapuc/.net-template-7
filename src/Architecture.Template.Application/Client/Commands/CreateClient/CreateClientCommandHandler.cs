@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Domain.Interfaces.Repository;
-using Microsoft.Extensions.Logging;
+﻿using Domain.Interfaces.Repository;
 
 namespace Application.Client.Commands.CreateClient;
 public sealed class CreateClientCommandHandler : IRequestHandler<CreateClientCommand, Guid>
@@ -19,7 +13,7 @@ public sealed class CreateClientCommandHandler : IRequestHandler<CreateClientCom
     }
     public async Task<Guid> Handle(CreateClientCommand request, CancellationToken cancellationToken)
     {
-        var clientEntity = _mapper.Map<CreateClientCommand,ClientEntity>(request);
+        var clientEntity = _mapper.Map<CreateClientCommand, ClientEntity>(request);
 
         await _clientRepository.InsertAsync(clientEntity, cancellationToken);
 

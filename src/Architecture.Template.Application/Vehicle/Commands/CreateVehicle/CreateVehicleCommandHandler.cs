@@ -1,5 +1,4 @@
-﻿using System.Runtime.CompilerServices;
-using Domain.Interfaces.Repository;
+﻿using Domain.Interfaces.Repository;
 
 namespace Application.Vehicle.Commands.CreateVehicle;
 public sealed class CreateVehicleCommandHandler : IRequestHandler<CreateVehicleCommand, Guid>
@@ -14,7 +13,7 @@ public sealed class CreateVehicleCommandHandler : IRequestHandler<CreateVehicleC
     }
     public async Task<Guid> Handle(CreateVehicleCommand request, CancellationToken cancellationToken)
     {
-        var vehicleEntity = _mapper.Map<CreateVehicleCommand,VehicleEntity>(request);
+        var vehicleEntity = _mapper.Map<CreateVehicleCommand, VehicleEntity>(request);
         await _vehicleRepository.InsertAsync(vehicleEntity, cancellationToken);
         return vehicleEntity.Id;
     }

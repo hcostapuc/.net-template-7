@@ -1,4 +1,4 @@
-﻿namespace Application.Common.Exceptions;
+﻿namespace Application._Common.Exceptions;
 
 public class ForbiddenAccessException : Exception
 {

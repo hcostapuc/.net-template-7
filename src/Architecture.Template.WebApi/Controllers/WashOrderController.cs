@@ -1,5 +1,4 @@
 ﻿using Application.WashOrder.Commands.CreateWashOrder;
-using Application.WashOrder.Commands.DeleteWashOrder;
 using Application.WashOrder.Commands.UpdateWashOrder;
 using Application.WashOrder.Queries.GetWashOrder;
 using Application.WashOrder.Queries.GetWashOrderCollection;

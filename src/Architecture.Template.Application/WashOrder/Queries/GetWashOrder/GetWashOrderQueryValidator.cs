@@ -1,6 +1,4 @@
-﻿using Application.WashOrder.Queries.GetWashOrder;
-
-namespace Application.WashOrder.Commands.DeleteWashOrder;
+﻿namespace Application.WashOrder.Queries.GetWashOrder;
 public sealed class GetWashOrderQueryValidator : AbstractValidator<GetWashOrderQuery>
 {
     public GetWashOrderQueryValidator()
