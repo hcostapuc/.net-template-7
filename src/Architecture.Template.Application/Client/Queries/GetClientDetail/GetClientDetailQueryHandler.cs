@@ -8,8 +8,8 @@ public sealed class GetClientDetailQueryHandler : IRequestHandler<GetClientDetai
     public GetClientDetailQueryHandler(IClientRepository clientRepository,
                                        IMapper mapper)
     {
-        _clientRepository = clientRepository ?? throw new ArgumentNullException(nameof(clientRepository));
-        _mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
+        _clientRepository = clientRepository ?? Guard.Against.Null(clientRepository, nameof(clientRepository));
+        _mapper = mapper ?? Guard.Against.Null(mapper, nameof(mapper));
 
     }
     public async Task<GetClientDetailRootDto> Handle(GetClientDetailQuery request, CancellationToken cancellationToken)

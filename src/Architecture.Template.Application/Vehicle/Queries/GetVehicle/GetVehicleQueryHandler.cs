@@ -8,8 +8,8 @@ public sealed class GetVehicleQueryHandler : IRequestHandler<GetVehicleQuery, Ge
     public GetVehicleQueryHandler(IVehicleRepository vehicleRepository,
                                  IMapper mapper)
     {
-        _vehicleRepository = vehicleRepository ?? throw new ArgumentNullException(nameof(vehicleRepository));
-        _mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
+        _vehicleRepository = vehicleRepository ?? Guard.Against.Null(vehicleRepository, nameof(vehicleRepository));
+        _mapper = mapper ?? Guard.Against.Null(mapper, nameof(mapper));
 
     }
     public async Task<GetVehicleRootDto> Handle(GetVehicleQuery request, CancellationToken cancellationToken)

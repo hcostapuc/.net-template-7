@@ -8,8 +8,8 @@ public sealed class CreateVehicleCommandHandler : IRequestHandler<CreateVehicleC
     public CreateVehicleCommandHandler(IVehicleRepository vehicleRepository,
                                       IMapper mapper)
     {
-        _vehicleRepository = vehicleRepository ?? throw new ArgumentNullException(nameof(vehicleRepository));
-        _mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
+        _vehicleRepository = vehicleRepository ?? Guard.Against.Null(vehicleRepository, nameof(vehicleRepository));
+        _mapper = mapper ?? Guard.Against.Null(mapper, nameof(mapper));
     }
     public async Task<Guid> Handle(CreateVehicleCommand request, CancellationToken cancellationToken)
     {

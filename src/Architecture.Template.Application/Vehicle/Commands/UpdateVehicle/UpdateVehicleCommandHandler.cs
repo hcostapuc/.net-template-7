@@ -5,7 +5,7 @@ public sealed class UpdateVehicleCommandHandler : IRequestHandler<UpdateVehicleC
 {
     private readonly IVehicleRepository _vehicleRepository;
     public UpdateVehicleCommandHandler(IVehicleRepository vehicleRepository) =>
-        _vehicleRepository = vehicleRepository ?? throw new ArgumentNullException(nameof(vehicleRepository));
+        _vehicleRepository = vehicleRepository ?? Guard.Against.Null(vehicleRepository, nameof(vehicleRepository));
     public async Task Handle(UpdateVehicleCommand request, CancellationToken cancellationToken)
     {
         var vehicleEntity = await _vehicleRepository.SelectAsync(x => x.Id == request.Id, cancellationToken);

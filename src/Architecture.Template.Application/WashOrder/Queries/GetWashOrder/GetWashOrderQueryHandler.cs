@@ -8,8 +8,8 @@ public sealed class GetWashOrderQueryHandler : IRequestHandler<GetWashOrderQuery
     public GetWashOrderQueryHandler(IWashOrderRepository washOrderRepository,
                                     IMapper mapper)
     {
-        _washOrderRepository = washOrderRepository ?? throw new ArgumentNullException(nameof(washOrderRepository));
-        _mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
+        _washOrderRepository = washOrderRepository ?? Guard.Against.Null(washOrderRepository, nameof(washOrderRepository));
+        _mapper = mapper ?? Guard.Against.Null(mapper, nameof(mapper));
 
     }
     public async Task<GetWashOrderRootDto> Handle(GetWashOrderQuery request, CancellationToken cancellationToken)

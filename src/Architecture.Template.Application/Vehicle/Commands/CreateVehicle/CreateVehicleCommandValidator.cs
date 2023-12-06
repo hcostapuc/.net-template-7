@@ -1,4 +1,5 @@
-﻿using Domain.Interfaces.Repository;
+﻿using AutoMapper;
+using Domain.Interfaces.Repository;
 
 namespace Application.Vehicle.Commands.CreateVehicle;
 public sealed class CreateVehicleCommandValidator : AbstractValidator<CreateVehicleCommand>

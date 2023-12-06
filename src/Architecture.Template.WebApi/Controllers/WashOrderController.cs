@@ -1,5 +1,5 @@
-﻿using Application.WashOrder.Commands.CreateWashOrder;
-using Application.WashOrder.Commands.UpdateWashOrder;
+﻿using Application.WashOrder.Commands.ConcludeWashOrder;
+using Application.WashOrder.Commands.CreateWashOrder;
 using Application.WashOrder.Queries.GetWashOrder;
 using Application.WashOrder.Queries.GetWashOrderCollection;
 using Microsoft.AspNetCore.Mvc;
@@ -17,19 +17,6 @@ public class WashOrderController : ApiControllerBase
     public async Task<ActionResult> ConcludeAsync(Guid id)
     {
         await Sender.Send(new ConcludeWashOrderCommand(id));
-
-        return NoContent();
-    }
-
-    [HttpPut("{id}")]
-    public async Task<ActionResult> UpdateAsync(Guid id, UpdateWashOrderCommand command)
-    {
-        if (id != command?.Id)
-        {
-            return BadRequest($"Incompatible id between body {command?.Id} and path {id}");
-        }
-
-        await Sender.Send(command);
 
         return NoContent();
     }

@@ -10,9 +10,9 @@ public sealed class CreateWashOrderCommandHandler : IRequestHandler<CreateWashOr
                                          IWashOrderRepository washOrderRepository,
                                          IMapper mapper)
     {
-        _clientRepository = clientRepository ?? throw new ArgumentNullException(nameof(clientRepository));
-        _washOrderRepository = washOrderRepository ?? throw new ArgumentNullException(nameof(washOrderRepository));
-        _mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
+        _clientRepository = clientRepository ?? Guard.Against.Null(clientRepository, nameof(clientRepository));
+        _washOrderRepository = washOrderRepository ?? Guard.Against.Null(washOrderRepository, nameof(washOrderRepository));
+        _mapper = mapper ?? Guard.Against.Null(mapper, nameof(mapper));
     }
     public async Task<Guid> Handle(CreateWashOrderCommand request, CancellationToken cancellationToken)
     {
@@ -27,7 +27,7 @@ public sealed class CreateWashOrderCommandHandler : IRequestHandler<CreateWashOr
         var washOrderEntity = _mapper.Map<CreateWashOrderCommand, WashOrderEntity>(request);
 
         await _washOrderRepository.InsertAsync(washOrderEntity, cancellationToken);
-
+        //TODO: send to message, use out of box
         return washOrderEntity.Id;
     }
 }

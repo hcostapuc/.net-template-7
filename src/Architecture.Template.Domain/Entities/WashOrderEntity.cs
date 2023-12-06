@@ -24,14 +24,3 @@ public sealed class WashOrderEntity : BaseAuditableEntity
         }
     }
 }
-public enum StatusOrder
-{
-    Open,
-    InProcess,
-    Closed
-}
-public enum WashType
-{
-    Ordinary,
-    Detailed
-}

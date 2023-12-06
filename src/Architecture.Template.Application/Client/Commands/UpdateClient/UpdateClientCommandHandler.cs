@@ -6,7 +6,7 @@ public sealed class UpdateClientCommandHandler : IRequestHandler<UpdateClientCom
     private readonly IClientRepository _clientRepository;
     public UpdateClientCommandHandler(IClientRepository clientRepository)
     {
-        _clientRepository = clientRepository ?? throw new ArgumentNullException(nameof(clientRepository));
+        _clientRepository = clientRepository ?? Guard.Against.Null(clientRepository, nameof(clientRepository));
     }
     public async Task Handle(UpdateClientCommand request, CancellationToken cancellationToken)
     {
