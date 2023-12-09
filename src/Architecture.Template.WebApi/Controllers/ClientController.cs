@@ -23,14 +23,9 @@ public class ClientController : ApiControllerBase
         return NoContent();
     }
 
-    [HttpPut("{id}")]
-    public async Task<ActionResult> UpdateAsync(Guid id, UpdateClientCommand command)
+    [HttpPut()]
+    public async Task<ActionResult> UpdateAsync(UpdateClientCommand command)
     {
-        if (id != command?.Id)
-        {
-            return BadRequest($"Incompatible id between body {command?.Id} and path {id}");
-        }
-
         await Sender.Send(command);
 
         return NoContent();

@@ -13,7 +13,7 @@ public class WashOrderController : ApiControllerBase
     public async Task<ActionResult<Guid>> CreateAsync(CreateWashOrderCommand command) =>
          await Sender.Send(command);
 
-    [HttpPost("{id}/conclude")]
+    [HttpPut("{id}/conclude")]
     public async Task<ActionResult> ConcludeAsync(Guid id)
     {
         await Sender.Send(new ConcludeWashOrderCommand(id));

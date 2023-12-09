@@ -14,8 +14,8 @@ public sealed class GetVehicleQueryHandler : IRequestHandler<GetVehicleQuery, Ge
     }
     public async Task<GetVehicleRootDto> Handle(GetVehicleQuery request, CancellationToken cancellationToken)
     {
-        var vehicleEntity = await _vehicleRepository.SelectAsync(x => x.Id == request.Id, cancellationToken);
-        Guard.Against.NotFound(request.Id, vehicleEntity, nameof(vehicleEntity.Id));
+        var vehicleEntity = await _vehicleRepository.SelectAsync(x => x.Plate == request.Plate, cancellationToken);
+        Guard.Against.NotFound(request.Plate, vehicleEntity, nameof(vehicleEntity.Id));
         return _mapper.Map<VehicleEntity, GetVehicleRootDto>(vehicleEntity);
     }
 }

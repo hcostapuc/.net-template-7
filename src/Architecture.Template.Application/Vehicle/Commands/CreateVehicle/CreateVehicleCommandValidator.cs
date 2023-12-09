@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Domain.Interfaces.Repository;
+using FluentValidation.Results;
 
 namespace Application.Vehicle.Commands.CreateVehicle;
 public sealed class CreateVehicleCommandValidator : AbstractValidator<CreateVehicleCommand>
@@ -16,8 +17,9 @@ public sealed class CreateVehicleCommandValidator : AbstractValidator<CreateVehi
             .NotEmpty().WithMessage("ClientId is required.")
             .MustAsync(BeExistClientAsync).WithMessage("The specified client not exists.");
 
-        RuleFor(v => new { v.ClientId, v.Plate })
-            .MustAsync(BeUniqueClientPlateAsync).WithMessage("The combination between client and plate must be unique.");
+        RuleFor(v => v.Plate)
+            .NotEmpty().WithMessage("Plate is required.")
+            .MustAsync(BeUniquePlateAsync).WithMessage("The specified plate already exists.");
 
         RuleFor(v => v.Model)
             .NotEmpty().WithMessage("Model is required.");
@@ -27,11 +29,11 @@ public sealed class CreateVehicleCommandValidator : AbstractValidator<CreateVehi
 
         RuleFor(v => v.Manufacturer)
             .NotEmpty().WithMessage("Manufacturer is required.");
-        _vehicleRepository = vehicleRepository;
-    }
 
-    public async Task<bool> BeExistClientAsync(Guid clientId, CancellationToken cancellationToken) =>
-        await _clientRepository.ExistAsync(l => l.Id == clientId, cancellationToken);
-    public async Task<bool> BeUniqueClientPlateAsync(CreateVehicleCommand model, object test, CancellationToken cancellationToken) =>
-        !await _vehicleRepository.ExistAsync(l => l.ClientId == model.ClientId && l.Plate == model.Plate, cancellationToken);
+    }
+    //TODO: try a better way to run a batch of simple rules and then the rules that involves get something on db side to do only once request
+    public async Task<bool> BeExistClientAsync(Guid id, CancellationToken cancellationToken) =>
+        await _clientRepository.ExistAsync(l => l.Id == id, cancellationToken);
+    public async Task<bool> BeUniquePlateAsync(string plate, CancellationToken cancellationToken) =>
+        !await _vehicleRepository.ExistAsync(l => l.Plate == plate, cancellationToken);
 }

@@ -1,10 +1,25 @@
-﻿namespace Application.Vehicle.Commands.UpdateVehicle;
+﻿using Application.Vehicle.Commands.CreateVehicle;
+using Domain.Interfaces.Repository;
+using FluentValidation;
+
+namespace Application.Vehicle.Commands.UpdateVehicle;
 public sealed class UpdateVehicleCommandValidator : AbstractValidator<UpdateVehicleCommand>
 {
-    public UpdateVehicleCommandValidator()
+    private readonly IClientRepository _clientRepository;
+    private readonly IVehicleRepository _vehicleRepository;
+    public UpdateVehicleCommandValidator(IClientRepository clientRepository,
+                                         IVehicleRepository vehicleRepository)
     {
+        _clientRepository = clientRepository ?? Guard.Against.Null(clientRepository, nameof(clientRepository));
+        _vehicleRepository = vehicleRepository ?? Guard.Against.Null(vehicleRepository, nameof(vehicleRepository));
+
+        RuleFor(v => v.ClientId)
+            .NotEmpty().WithMessage("ClientId is required.")
+            .MustAsync(BeExistClientAsync).WithMessage("The specified client not exists.");
+
         RuleFor(v => v.Plate)
-            .NotEmpty().WithMessage("Plate is required.");
+           .NotEmpty().WithMessage("Plate is required.")
+           .MustAsync(BeUniquePlateAsync).WithMessage("The specified plate already exists.");
 
         RuleFor(v => v.Model)
             .NotEmpty().WithMessage("Model is required.");
@@ -15,4 +30,8 @@ public sealed class UpdateVehicleCommandValidator : AbstractValidator<UpdateVehi
         RuleFor(v => v.Manufacturer)
             .NotEmpty().WithMessage("Manufacturer is required.");
     }
+    public async Task<bool> BeExistClientAsync(Guid id, CancellationToken cancellationToken) =>
+        await _clientRepository.ExistAsync(l => l.Id == id, cancellationToken);
+    public async Task<bool> BeUniquePlateAsync(string plate, CancellationToken cancellationToken) =>
+        !await _vehicleRepository.ExistAsync(l => l.Plate == plate, cancellationToken);
 }

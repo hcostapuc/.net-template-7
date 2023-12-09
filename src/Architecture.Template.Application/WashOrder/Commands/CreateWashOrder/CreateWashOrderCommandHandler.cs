@@ -16,14 +16,6 @@ public sealed class CreateWashOrderCommandHandler : IRequestHandler<CreateWashOr
     }
     public async Task<Guid> Handle(CreateWashOrderCommand request, CancellationToken cancellationToken)
     {
-        var clientEntity = await _clientRepository.SelectDetailAsync(x => x.Id == request.ClientId, cancellationToken);
-
-        Guard.Against.NotFound(request.ClientId, clientEntity, nameof(clientEntity.Id));
-
-        var vehicleToWash = clientEntity.VehicleCollection.FirstOrDefault(x => x.Id == request.VehicleId);
-
-        Guard.Against.NotFound(request.VehicleId, clientEntity, nameof(clientEntity.VehicleCollection));
-
         var washOrderEntity = _mapper.Map<CreateWashOrderCommand, WashOrderEntity>(request);
 
         await _washOrderRepository.InsertAsync(washOrderEntity, cancellationToken);

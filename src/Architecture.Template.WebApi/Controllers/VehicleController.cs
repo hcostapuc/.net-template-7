@@ -21,21 +21,16 @@ public class VehicleController : ApiControllerBase
         return NoContent();
     }
 
-    [HttpPut("{id}")]
-    public async Task<ActionResult> UpdateAsync(Guid id, UpdateVehicleCommand command)
+    [HttpPut()]
+    public async Task<ActionResult> UpdateAsync(UpdateVehicleCommand command)
     {
-        if (id != command?.Id)
-        {
-            return BadRequest($"Incompatible id between body {command?.Id} and path {id}");
-        }
-
         await Sender.Send(command);
 
         return NoContent();
     }
 
-    [HttpGet("{id}")]
-    public async Task<ActionResult<GetVehicleRootDto>> GetAsync(Guid id) =>
-         await Sender.Send(new GetVehicleQuery(id));
+    [HttpGet("{plate}")]
+    public async Task<ActionResult<GetVehicleRootDto>> GetAsync(string plate) =>
+         await Sender.Send(new GetVehicleQuery(plate));
 
 }

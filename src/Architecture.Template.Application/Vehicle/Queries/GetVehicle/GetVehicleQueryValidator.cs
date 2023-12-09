@@ -3,7 +3,7 @@ public sealed class GetVehicleQueryValidator : AbstractValidator<GetVehicleQuery
 {
     public GetVehicleQueryValidator()
     {
-        RuleFor(x => x.Id)
-           .NotEmpty().WithMessage("Id is required.");
+        RuleFor(x => x.Plate)
+           .NotEmpty().WithMessage("Plate is required.");
     }
 }
