@@ -30,6 +30,7 @@ public sealed class UpdateVehicleCommandValidator : AbstractValidator<UpdateVehi
         RuleFor(v => v.Manufacturer)
             .NotEmpty().WithMessage("Manufacturer is required.");
     }
+    //TODO: try a better way to run a batch of simple rules and then the rules that involves get something on db side to do only once request
     public async Task<bool> BeExistClientAsync(Guid id, CancellationToken cancellationToken) =>
         await _clientRepository.ExistAsync(l => l.Id == id, cancellationToken);
     public async Task<bool> BeUniquePlateAsync(string plate, CancellationToken cancellationToken) =>

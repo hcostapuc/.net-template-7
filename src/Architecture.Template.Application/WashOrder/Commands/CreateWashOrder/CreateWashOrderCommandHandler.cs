@@ -18,8 +18,9 @@ public sealed class CreateWashOrderCommandHandler : IRequestHandler<CreateWashOr
     {
         var washOrderEntity = _mapper.Map<CreateWashOrderCommand, WashOrderEntity>(request);
 
+        //washOrderEntity.AddDomainEvent()
         await _washOrderRepository.InsertAsync(washOrderEntity, cancellationToken);
-        //TODO: send to message, use out of box
+        //TODO: send to azure queue, use out of box
         return washOrderEntity.Id;
     }
 }

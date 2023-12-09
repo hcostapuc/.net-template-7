@@ -15,7 +15,7 @@ public sealed class ConcludeWashOrderCommandHandler : IRequestHandler<ConcludeWa
 
         washOrderEntity.Status = StatusOrder.Closed;
 
-        //TODO: send sms to client use out of box
+        //TODO: send sms to client
         await _washOrderRepository.UpdateAsync(washOrderEntity, cancellationToken);
     }
 }
