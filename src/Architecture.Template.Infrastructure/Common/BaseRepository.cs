@@ -1,4 +1,5 @@
 ﻿using System.Linq.Expressions;
+using Ardalis.GuardClauses;
 using Domain.Common;
 using Infrastructure.Context;
 using Microsoft.EntityFrameworkCore;
@@ -10,7 +11,7 @@ public partial class BaseRepository<T> : IBaseRepository<T> where T : BaseAudita
     protected readonly DbSet<T> _dataset;
     public BaseRepository(ApplicationDbContext context)
     {
-        _context = context ?? throw new ArgumentNullException(nameof(context));
+        _context = context ?? Guard.Against.Null(context, nameof(context));
         _dataset = context.Set<T>();
     }
     public async Task<T> SelectAsync(Expression<Func<T, bool>> expression, CancellationToken cancellationToken = default) =>

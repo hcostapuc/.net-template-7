@@ -4,7 +4,6 @@ namespace Domain.Common;
 public abstract class BaseEntity
 {
     public Guid Id { get; set; }
-    [NotMapped]
 
     private readonly List<BaseEvent> _domainEvents = new();
 

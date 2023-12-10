@@ -7,10 +7,8 @@ public class ValidationBehaviour<TRequest, TResponse> : IPipelineBehavior<TReque
 {
     private readonly IEnumerable<IValidator<TRequest>> _validators;
 
-    public ValidationBehaviour(IEnumerable<IValidator<TRequest>> validators)
-    {
-        _validators = validators;
-    }
+    public ValidationBehaviour(IEnumerable<IValidator<TRequest>> validators) =>
+        _validators = validators ?? Guard.Against.Null(validators, nameof(validators));
 
     public async Task<TResponse> Handle(TRequest request, RequestHandlerDelegate<TResponse> next, CancellationToken cancellationToken)
     {

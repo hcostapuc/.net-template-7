@@ -1,5 +1,8 @@
-﻿using Domain.Enums;
+﻿using Application._Common.Extensions;
+using Domain.Enums;
+using Domain.Events;
 using Domain.Interfaces.Repository;
+using FluentValidation.Results;
 
 namespace Application.WashOrder.Commands.ConcludeWashOrder;
 public sealed class ConcludeWashOrderCommandHandler : IRequestHandler<ConcludeWashOrderCommand>
@@ -13,9 +16,12 @@ public sealed class ConcludeWashOrderCommandHandler : IRequestHandler<ConcludeWa
 
         Guard.Against.NotFound(request.Id, washOrderEntity, nameof(washOrderEntity.Id));
 
+        Guard.Against.AgainstValidationExpression(x => x, washOrderEntity.Status != StatusOrder.Closed, 
+                                                        new ValidationFailure(nameof(request.Id), "The WashOrder is already closed."));
         washOrderEntity.Status = StatusOrder.Closed;
 
-        //TODO: send sms to client
+        washOrderEntity.AddDomainEvent(new WashOrderCompletedEvent(washOrderEntity));
+
         await _washOrderRepository.UpdateAsync(washOrderEntity, cancellationToken);
     }
 }
