@@ -1,6 +1,7 @@
 ﻿using System.Reflection;
 using Ardalis.GuardClauses;
 using Domain.Common;
+using Infrastructure.Common;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 
@@ -12,7 +13,7 @@ public class ApplicationDbContext : DbContext
     public ApplicationDbContext(IMediator mediator,
                                 DbContextOptions<ApplicationDbContext> options) : base(options)
     {
-        _mediator = mediator ?? Guard.Against.Null(mediator,nameof(mediator));
+        _mediator = mediator ?? Guard.Against.Null(mediator, nameof(mediator));
     }
     public override async Task<int> SaveChangesAsync(CancellationToken cancellationToken = new CancellationToken())
     {

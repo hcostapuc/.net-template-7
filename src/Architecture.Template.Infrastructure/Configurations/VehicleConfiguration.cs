@@ -9,7 +9,7 @@ public class VehicleConfiguration : IEntityTypeConfiguration<VehicleEntity>
     {
         builder.Ignore(x => x.DomainEvents);
         builder.OwnsOne(x => x.Colour);
-        builder.HasIndex(x => x.Plate )
+        builder.HasIndex(x => x.Plate)
                .IsUnique();
     }
 }

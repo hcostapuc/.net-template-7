@@ -20,7 +20,7 @@ public sealed class CreateWashOrderCommandHandler : IRequestHandler<CreateWashOr
         washOrderEntity.AddDomainEvent(new WashOrderCreatedEvent(washOrderEntity));
 
         await _washOrderRepository.InsertAsync(washOrderEntity, cancellationToken);
-        
+
         return washOrderEntity.Id;
     }
 }

@@ -1,6 +1,4 @@
-﻿using Application.Vehicle.Commands.CreateVehicle;
-using Domain.Interfaces.Repository;
-using FluentValidation;
+﻿using Domain.Interfaces.Repository;
 
 namespace Application.Vehicle.Commands.UpdateVehicle;
 public sealed class UpdateVehicleCommandValidator : AbstractValidator<UpdateVehicleCommand>

@@ -1,8 +1,5 @@
 ﻿using System.Text.RegularExpressions;
-using AutoMapper;
 using Domain.Interfaces.Repository;
-using Domain.ValueObjects;
-using FluentValidation.Results;
 
 namespace Application.Vehicle.Commands.CreateVehicle;
 public sealed partial class CreateVehicleCommandValidator : AbstractValidator<CreateVehicleCommand>

@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading;
+﻿using System.Threading;
 using System.Threading.Tasks;
 using Application.Client.Commands.CreateClient;
 using AutoFixture;
@@ -19,9 +15,9 @@ public class CreateClientCommandHandlerTest
 {
     public CreateClientCommandHandlerTest()
     {
-        
+
     }
-    [Fact(DisplayName ="GIVEN a createTodoItemCommand valid WHEN createcommandhandler call occur THEN return the client id")]
+    [Fact(DisplayName = "GIVEN a createTodoItemCommand valid WHEN createcommandhandler call occur THEN return the client id")]
     public async Task ShouldCreateSuccesfullyClient()
     {
         //Arrange
@@ -43,7 +39,7 @@ public class CreateClientCommandHandlerTest
         var mapper = new Mock<IMapper>(MockBehavior.Strict);
         var cancellationToken = new CancellationToken();
 
-        clientRepository.Setup(x => x.InsertAsync(It.IsAny<ClientEntity>(),It.IsAny<CancellationToken>()))
+        clientRepository.Setup(x => x.InsertAsync(It.IsAny<ClientEntity>(), It.IsAny<CancellationToken>()))
                         .ReturnsAsync(entityToCreate);
 
         mapper.Setup(x => x.Map<CreateClientCommand, ClientEntity>(It.IsAny<CreateClientCommand>()))
@@ -52,12 +48,12 @@ public class CreateClientCommandHandlerTest
         var commandHandler = new CreateClientCommandHandler(clientRepository.Object,
                                                             mapper.Object);
         //Act
-        var entityResponse = await commandHandler.Handle(command,cancellationToken);
+        var entityResponse = await commandHandler.Handle(command, cancellationToken);
         //Assert
         entityToCreate.Email.Should().Be(command.Email);
         entityToCreate.PhoneNumber.Should().Be(command.PhoneNumber);
         entityToCreate.Id.Should().Be(entityResponse);
-        clientRepository.Verify(x => x.InsertAsync(It.IsAny<ClientEntity>(), It.IsAny<CancellationToken>()),Times.Once());
+        clientRepository.Verify(x => x.InsertAsync(It.IsAny<ClientEntity>(), It.IsAny<CancellationToken>()), Times.Once());
         mapper.Verify(x => x.Map<CreateClientCommand, ClientEntity>(It.IsAny<CreateClientCommand>()), Times.Once());
     }
     //[Fact(DisplayName = "Dado que o objeto CreateTodoItemCommand é valido, quando o metodo create é chamado, então deverá retornar TodoItemEntity.Id valido")]

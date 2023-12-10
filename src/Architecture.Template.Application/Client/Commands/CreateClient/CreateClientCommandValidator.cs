@@ -20,7 +20,7 @@ public sealed class CreateClientCommandValidator : AbstractValidator<CreateClien
             .NotEmpty().WithMessage("PhoneNumber is required.")
             .Must(x => x.ToString().Length == 9).WithMessage("Invalid phone number needs to be 9 numbers");
     }
-    
+
     public async Task<bool> BeUniqueEmailAsync(string email, CancellationToken cancellationToken) =>
         !await _clientRepository.ExistAsync(l => l.Email.Equals(email), cancellationToken);
 }

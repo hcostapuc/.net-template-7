@@ -13,7 +13,7 @@ public sealed class Colour : ValueObject
     private Colour(string code) =>
         Code = code;
 
-        //TODO add validation of supported colours
+    //TODO add validation of supported colours
     public static Colour From(string code) =>
          new Colour { Code = code };
 

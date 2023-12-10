@@ -1,5 +1,4 @@
-﻿using Application.Vehicle.Commands.UpdateVehicle;
-using Domain.Interfaces.Repository;
+﻿using Domain.Interfaces.Repository;
 
 namespace Application.WashOrder.Commands.CreateWashOrder;
 public sealed class CreateWashOrderCommandValidator : AbstractValidator<CreateWashOrderCommand>
@@ -14,7 +13,7 @@ public sealed class CreateWashOrderCommandValidator : AbstractValidator<CreateWa
         _clientRepository = clientRepository ?? Guard.Against.Null(clientRepository, nameof(clientRepository));
         _vehicleRepository = vehicleRepository ?? Guard.Against.Null(vehicleRepository, nameof(vehicleRepository));
         _washOrderRepository = washOrderRepository ?? Guard.Against.Null(washOrderRepository, nameof(washOrderRepository));
-        
+
         RuleFor(v => v.ClientId)
             .NotEmpty().WithMessage("ClientId is required.")
             .MustAsync(BeExistClientAsync).WithMessage("The specified client not exists.");

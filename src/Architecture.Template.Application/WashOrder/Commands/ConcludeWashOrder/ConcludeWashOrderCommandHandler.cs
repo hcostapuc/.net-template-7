@@ -16,7 +16,7 @@ public sealed class ConcludeWashOrderCommandHandler : IRequestHandler<ConcludeWa
 
         Guard.Against.NotFound(request.Id, washOrderEntity, nameof(washOrderEntity.Id));
 
-        Guard.Against.AgainstValidationExpression(x => x, washOrderEntity.Status != StatusOrder.Closed, 
+        Guard.Against.AgainstValidationExpression(x => x, washOrderEntity.Status != StatusOrder.Closed,
                                                         new ValidationFailure(nameof(request.Id), "The WashOrder is already closed."));
         washOrderEntity.Status = StatusOrder.Closed;
 
