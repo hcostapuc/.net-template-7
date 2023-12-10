@@ -29,10 +29,9 @@ public static class DependencyInjection
                     b => b.MigrationsAssembly(typeof(ApplicationDbContext).Assembly.FullName)));
         }
 
-        services.AddScoped<ITodoItemRepository, TodoItemRepository>();
-        services.AddScoped<ITodoListRepository, TodoListRepository>();
-
-        //TODO: recuperar o user do identity com a biblioteca do AD
+        services.AddScoped<IClientRepository, ClientRepository>();
+        services.AddScoped<IVehicleRepository, VehicleRepository>();
+        services.AddScoped<IWashOrderRepository, WashOrderRepository>();
 
         return services;
     }

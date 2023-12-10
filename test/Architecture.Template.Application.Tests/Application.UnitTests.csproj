@@ -28,4 +28,8 @@
     <ProjectReference Include="..\..\src\Architecture.Template.Infrastructure\Infrastructure.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Common\" />
+  </ItemGroup>
+
 </Project>

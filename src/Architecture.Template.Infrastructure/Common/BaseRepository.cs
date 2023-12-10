@@ -1,4 +1,5 @@
 ﻿using System.Linq.Expressions;
+using Ardalis.GuardClauses;
 using Domain.Common;
 using Infrastructure.Context;
 using Microsoft.EntityFrameworkCore;
@@ -10,23 +11,23 @@ public partial class BaseRepository<T> : IBaseRepository<T> where T : BaseAudita
     protected readonly DbSet<T> _dataset;
     public BaseRepository(ApplicationDbContext context)
     {
-        _context = context ?? throw new ArgumentNullException(nameof(context));
+        _context = context ?? Guard.Against.Null(context, nameof(context));
         _dataset = context.Set<T>();
     }
-    public async Task<T> SelectAsync(Expression<Func<T, bool>> predicate, CancellationToken cancellationToken = default) =>
+    public async Task<T> SelectAsync(Expression<Func<T, bool>> expression, CancellationToken cancellationToken = default) =>
         await _dataset.AsNoTracking()
-                 .SingleOrDefaultAsync(predicate, cancellationToken);//TODO: se der match mais de um vai da ruim
+                 .SingleOrDefaultAsync(expression, cancellationToken);
 
-    public async Task<IEnumerable<T>> SelectAllAsync(Expression<Func<T, bool>> predicate, CancellationToken cancellationToken = default) =>
+    public async Task<IEnumerable<T>> SelectAllAsync(Expression<Func<T, bool>> expression, CancellationToken cancellationToken = default) =>
          await _dataset.AsNoTracking()
-                           .Where(predicate)
-                           .ToListAsync(cancellationToken);//TODO: ver de retornar IList ou mudar ToList pra outra forma de enemeração
+                           .Where(expression)
+                           .ToListAsync(cancellationToken);
 
     public async Task<IEnumerable<T>> SelectAllAsync(CancellationToken cancellationToken = default) =>
         await _dataset.AsNoTracking()
                            .ToListAsync(cancellationToken);
-    public async Task<bool> ExistAsync(Expression<Func<T, bool>> predicate, CancellationToken cancellationToken = default) =>
-       await _dataset.AnyAsync(predicate, cancellationToken);
+    public async Task<bool> ExistAsync(Expression<Func<T, bool>> expression, CancellationToken cancellationToken = default) =>
+       await _dataset.AnyAsync(expression, cancellationToken);
     public async Task<T> InsertAsync(T entity, CancellationToken cancellationToken)
     {
         await _dataset.AddAsync(entity, cancellationToken);

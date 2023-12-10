@@ -15,8 +15,6 @@ public class Startup
         services.AddInfrastructure(Configuration);
         services.AddWebServices();
     }
-    //TODO: adicionar esse cara junto com o extension startup
-    //public void Configure(WebApplication app, IWebHostEnvironment environment)
     public void Configure(IApplicationBuilder app, IWebHostEnvironment environment)
     {
         if (environment.IsDevelopment())

@@ -1,16 +1,9 @@
 ﻿namespace Domain.Common;
 
-// Learn more: https://docs.microsoft.com/en-us/dotnet/standard/microservices-architecture/microservice-ddd-cqrs-patterns/implement-value-objects
 public abstract class ValueObject
 {
-    protected static bool EqualOperator(ValueObject left, ValueObject right)
-    {
-        if (left is null ^ right is null)
-            return false;
-
-        return left?.Equals(right!) != false;
-    }
-
+    protected static bool EqualOperator(ValueObject left, ValueObject right) =>
+         !(left is null ^ right is null) && left?.Equals(right!) != false;
     protected static bool NotEqualOperator(ValueObject left, ValueObject right) => !EqualOperator(left, right);
 
     protected abstract IEnumerable<object> GetEqualityComponents();

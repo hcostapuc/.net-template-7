@@ -1,4 +1,4 @@
-﻿using Application.Common.Exceptions;
+﻿using Application._Common.Exceptions;
 using Ardalis.GuardClauses;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
