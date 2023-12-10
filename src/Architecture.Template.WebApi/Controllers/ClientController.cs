@@ -35,7 +35,7 @@ public class ClientController : ApiControllerBase
     public async Task<ActionResult<GetClientRootDto>> GetAsync(Guid id) =>
          await Sender.Send(new GetClientQuery(id));
 
-    [HttpGet]//TODO: see why didnt acception actionResult
+    [HttpGet]
     public async Task<IList<GetClientRootDto>> GetCollectionAsync() =>
          await Sender.Send(new GetClientCollectionQuery());
 

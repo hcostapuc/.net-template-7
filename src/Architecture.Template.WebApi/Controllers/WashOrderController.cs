@@ -25,7 +25,7 @@ public class WashOrderController : ApiControllerBase
     public async Task<ActionResult<GetWashOrderRootDto>> GetAsync(Guid id) =>
          await Sender.Send(new GetWashOrderQuery(id));
 
-    [HttpGet]//TODO: see why didnt acception actionResult
+    [HttpGet]
     public async Task<IList<GetWashOrderRootDto>> GetCollectionAsync() =>
          await Sender.Send(new GetWashOrderCollectionQuery());
 }

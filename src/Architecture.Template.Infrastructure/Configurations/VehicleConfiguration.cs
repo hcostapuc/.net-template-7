@@ -8,7 +8,7 @@ public class VehicleConfiguration : IEntityTypeConfiguration<VehicleEntity>
     public void Configure(EntityTypeBuilder<VehicleEntity> builder)
     {
         builder.Ignore(x => x.DomainEvents);
-        //builder.OwnsOne(x => x.Colour);//TODO voltar quando voltar com o value object
+        builder.OwnsOne(x => x.Colour);
         builder.HasIndex(x => x.Plate )
                .IsUnique();
     }

@@ -4,7 +4,6 @@ public abstract class ValueObject
 {
     protected static bool EqualOperator(ValueObject left, ValueObject right) =>
          !(left is null ^ right is null) && left?.Equals(right!) != false;
-    //TODO: see the expression that I'm not using on original project
     protected static bool NotEqualOperator(ValueObject left, ValueObject right) => !EqualOperator(left, right);
 
     protected abstract IEnumerable<object> GetEqualityComponents();

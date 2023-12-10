@@ -1,9 +1,11 @@
-﻿using AutoMapper;
+﻿using System.Text.RegularExpressions;
+using AutoMapper;
 using Domain.Interfaces.Repository;
+using Domain.ValueObjects;
 using FluentValidation.Results;
 
 namespace Application.Vehicle.Commands.CreateVehicle;
-public sealed class CreateVehicleCommandValidator : AbstractValidator<CreateVehicleCommand>
+public sealed partial class CreateVehicleCommandValidator : AbstractValidator<CreateVehicleCommand>
 {
     private readonly IClientRepository _clientRepository;
     private readonly IVehicleRepository _vehicleRepository;
@@ -25,10 +27,12 @@ public sealed class CreateVehicleCommandValidator : AbstractValidator<CreateVehi
             .NotEmpty().WithMessage("Model is required.");
 
         RuleFor(v => v.Colour)
-            .NotEmpty().WithMessage("Colour is required.");
+            .NotEmpty().WithMessage("Colour is required.")
+            .Must(x => IsHexaDecimal().IsMatch(x)).WithMessage("Colour must be a hexadecimal");
 
         RuleFor(v => v.Manufacturer)
             .NotEmpty().WithMessage("Manufacturer is required.");
+
 
     }
     //TODO: try a better way to run a batch of simple rules and then the rules that involves get something on db side to do only once request
@@ -36,4 +40,6 @@ public sealed class CreateVehicleCommandValidator : AbstractValidator<CreateVehi
         await _clientRepository.ExistAsync(l => l.Id == id, cancellationToken);
     public async Task<bool> BeUniquePlateAsync(string plate, CancellationToken cancellationToken) =>
         !await _vehicleRepository.ExistAsync(l => l.Plate == plate, cancellationToken);
+    [GeneratedRegex("^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$")]
+    private static partial Regex IsHexaDecimal();
 }
