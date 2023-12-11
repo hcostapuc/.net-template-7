@@ -21,9 +21,12 @@ public class VehicleController : ApiControllerBase
         return NoContent();
     }
 
-    [HttpPut()]
-    public async Task<ActionResult> UpdateAsync(UpdateVehicleCommand command)
+    [HttpPut("{id}")]
+    public async Task<ActionResult> UpdateAsync(Guid id, UpdateVehicleCommand command)
     {
+        if (id != command.Id)
+            return BadRequest("Ids must be equals");
+
         await Sender.Send(command);
 
         return NoContent();

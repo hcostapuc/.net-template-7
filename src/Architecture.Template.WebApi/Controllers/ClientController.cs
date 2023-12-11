@@ -23,9 +23,12 @@ public class ClientController : ApiControllerBase
         return NoContent();
     }
 
-    [HttpPut()]
-    public async Task<ActionResult> UpdateAsync(UpdateClientCommand command)
+    [HttpPut("{id}")]
+    public async Task<ActionResult> UpdateAsync(Guid id, UpdateClientCommand command)
     {
+        if (id != command.Id)
+            return BadRequest("Ids must be equals");
+
         await Sender.Send(command);
 
         return NoContent();
